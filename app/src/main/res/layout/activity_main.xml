@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/south"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/spinner"
+            android:layout_width="63dp"
+            android:layout_height="87dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/spinner" />
+
+        <ImageView
+            android:id="@+id/laviga"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/laviganh" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/south"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/lemonlogo"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:layout_marginTop="55dp"
+            android:layout_weight="1"
+            android:src="@drawable/lemon" />
+
+    </LinearLayout>
+
+    </RelativeLayout>

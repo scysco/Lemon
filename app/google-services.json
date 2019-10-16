@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "678974971946",
+    "firebase_url": "https://lemon-laviga.firebaseio.com",
+    "project_id": "lemon-laviga",
+    "storage_bucket": "lemon-laviga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678974971946:android:95dddddaf5c20e19a36353",
+        "android_client_info": {
+          "package_name": "com.scysco.lemon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678974971946-755bhaf7uncp5lv8ohro2qdk9cqi1a2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa4L-fQ8thYqzyzEOcx49rcXQtrImEURY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678974971946-755bhaf7uncp5lv8ohro2qdk9cqi1a2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

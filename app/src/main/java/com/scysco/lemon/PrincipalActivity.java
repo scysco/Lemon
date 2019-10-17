@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.flexbox.FlexboxLayout;
+import com.scysco.lemon.api.test;
 
 public class PrincipalActivity extends AppCompatActivity {
+
+    private static final String TAG = "PrincipalActivity";
+    public static String PLACE;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -21,10 +25,15 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        PLACE = "Products";
+
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
 
-        addButton();
+        String a = new test("QfMBBlY1XlYU4HVxL9Ro").getName();
+
+        System.out.println(a);
+
     }
     private void addButton() {
         FlexboxLayout fbContainer = findViewById(R.id.fbContainer);

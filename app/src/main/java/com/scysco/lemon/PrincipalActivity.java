@@ -10,9 +10,14 @@ import android.widget.LinearLayout;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.ObservableArrayList;
 
 import com.google.android.flexbox.FlexboxLayout;
-import com.scysco.lemon.api.test;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.scysco.lemon.api.Product;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -25,14 +30,27 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        PLACE = "Products";
-
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
 
-        String a = new test("QfMBBlY1XlYU4HVxL9Ro").getName();
+        PrincipalActivity.PLACE = "Products";
 
-        System.out.println(a);
+        /*
+        Product p = new Product("Duquesa",500,10,20);
+        FirebaseFirestore DB = FirebaseFirestore.getInstance();
+        DB.collection("Products").document().set(p);
+
+        final ObservableArrayList<Product> products = new ObservableArrayList<Product>();
+        DocumentReference docRef = DB.collection("Products").document("87ZSkrom4Rz8G5I7xGEf");
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Product p = documentSnapshot.toObject(Product.class);
+                assert p != null;
+                System.out.println(p.getName());
+                products.add(p);
+            }
+        });*/
 
     }
     private void addButton() {

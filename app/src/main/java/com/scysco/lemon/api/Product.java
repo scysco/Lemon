@@ -1,6 +1,7 @@
 package com.scysco.lemon.api;
 
 public class Product {
+
     private String name;
     private double grams;
     private double cost;

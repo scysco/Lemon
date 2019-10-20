@@ -101,8 +101,6 @@ public class PrincipalActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         fbContainer.addView(btnUno);
     }
-
-
     public void incrementSpace(View view) {
         FirebaseFirestore DB = FirebaseFirestore.getInstance();
         final DocumentReference docRef = DB.collection(PLACE).document("example");
@@ -120,4 +118,6 @@ public class PrincipalActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

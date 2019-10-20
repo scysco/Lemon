@@ -48,20 +48,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 System.out.println(p.getName());
                 products.add(p);
             }
-        });*/
-
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
-
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
-
-        PrincipalActivity.PLACE = "Products_1";
-
+        });
         FirebaseFirestore DB = FirebaseFirestore.getInstance();
 
         final DocumentReference docRef = DB.collection(PLACE).document("example");
@@ -91,17 +78,7 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
-    }
-    private void addButton() {
-        FlexboxLayout fbContainer = findViewById(R.id.fbContainer);
-        ImageView btnUno = new ImageView(this);
-        btnUno.setImageResource(R.mipmap.ic_launcher);
-        btnUno.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        fbContainer.addView(btnUno);
-    }
-    public void incrementSpace(View view) {
+         public void incrementSpace(View view) {
         FirebaseFirestore DB = FirebaseFirestore.getInstance();
         final DocumentReference docRef = DB.collection(PLACE).document("example");
         docRef.update("space_1", counter++)
@@ -117,6 +94,31 @@ public class PrincipalActivity extends AppCompatActivity {
                         Log.w(TAG, "Error updating document", e);
                     }
                 });
+    }
+
+        */
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_principal);
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
+
+        PrincipalActivity.PLACE = "Products_1";
+
+    }
+    private void addButton() {
+        FlexboxLayout fbContainer = findViewById(R.id.fbContainer);
+        ImageView btnUno = new ImageView(this);
+        btnUno.setImageResource(R.mipmap.ic_launcher);
+        btnUno.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        fbContainer.addView(btnUno);
     }
 
 

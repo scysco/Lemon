@@ -80,6 +80,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:onClick="mkfavs"
         app:alignContent="flex_start"
         app:alignItems="center"
         app:flexDirection="row"

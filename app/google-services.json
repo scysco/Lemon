@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678974971946:android:95dddddaf5c20e19a36353",
+        "mobilesdk_app_id": "1:678974971946:android:365b107f6313682fa36353",
         "android_client_info": {
           "package_name": "com.scysco.lemon"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "678974971946-gmuh32obbqhgv852npug9sf04a7p2kkr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scysco.lemon",
+            "certificate_hash": "0fb9e65b3bffb398fbb892de4ab4c6d8c0e97841"
+          }
+        },
         {
           "client_id": "678974971946-755bhaf7uncp5lv8ohro2qdk9cqi1a2j.apps.googleusercontent.com",
           "client_type": 3

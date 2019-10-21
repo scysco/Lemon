@@ -2,35 +2,18 @@ package com.scysco.lemon;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.databinding.ObservableArrayList;
 
 import com.google.android.flexbox.FlexboxLayout;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.MetadataChanges;
-import com.scysco.lemon.api.Product;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -117,10 +100,15 @@ public class PrincipalActivity extends AppCompatActivity {
         PrincipalActivity.PLACE = "Products_1";
 
 
-
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Toast.makeText(PrincipalActivity.this, "Correo: "+ FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                Toast.LENGTH_SHORT).show();
     }
     private void addButton() {
-        FlexboxLayout fbContainer = findViewById(R.id.fbContainer);
+        FlexboxLayout fbContainer = findViewById(R.id.fbcFavorites);
         ImageView btnUno = new ImageView(this);
         btnUno.setImageResource(R.mipmap.ic_launcher);
         btnUno.setLayoutParams(new LinearLayout.LayoutParams(
@@ -128,6 +116,5 @@ public class PrincipalActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         fbContainer.addView(btnUno);
     }
-
 
 }

@@ -3,6 +3,7 @@ package com.scysco.lemon;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
@@ -14,7 +15,18 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class InitActivity extends AppCompatActivity {
+
+    public static String LOCAL;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -28,9 +40,16 @@ public class InitActivity extends AppCompatActivity {
         ImageView spinner = findViewById(R.id.spinner);
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent (getApplicationContext(), PrincipalActivity.class);
-                startActivity(intent);
-                finish();
+                if(!InitActivity.LOCAL.equals("default")){
+                    Intent intent = new Intent (getApplicationContext(), PrincipalActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent = new Intent (getApplicationContext(), FirstStartActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             };
         }, 1500);
 
@@ -41,5 +60,27 @@ public class InitActivity extends AppCompatActivity {
         rotate.setDuration(1600);
         rotate.setRepeatCount(Animation.INFINITE);
         spinner.setAnimation(rotate);
+
+        try {
+            FileInputStream fIn = openFileInput("LOCAL.INFO");
+            InputStreamReader isr = new InputStreamReader(fIn);
+            BufferedReader inBuff = new BufferedReader(isr);
+            String inputLine = inBuff.readLine();
+            inBuff.close();
+            InitActivity.LOCAL = inputLine;
+            Log.e("File Reading stuff", "success = "+inputLine);
+        } catch (IOException ioe){
+            try {
+                FileOutputStream fOut = openFileOutput("LOCAL.INFO",MODE_PRIVATE);
+                OutputStreamWriter osw = new OutputStreamWriter(fOut);
+                osw.write("default");
+                osw.flush();
+                osw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            InitActivity.LOCAL = "default";
+        }
+
     }
 }

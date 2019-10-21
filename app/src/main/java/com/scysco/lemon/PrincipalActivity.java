@@ -26,6 +26,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.MetadataChanges;
 import com.scysco.lemon.api.Product;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class PrincipalActivity extends AppCompatActivity {
 
     private static final String TAG = "PrincipalActivity";
@@ -109,6 +115,8 @@ public class PrincipalActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
 
         PrincipalActivity.PLACE = "Products_1";
+
+
 
     }
     private void addButton() {

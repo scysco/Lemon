@@ -73,17 +73,18 @@
             android:layout_gravity="center"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="panelConfig"
             app:srcCompat="@drawable/textajustes" />
     </LinearLayout>
 
     <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/fbcFavorites"
+        android:id="@+id/pnlFavorites"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="50dp"
         android:clickable="false"
-        android:visibility="gone"
         app:alignContent="flex_start"
         app:alignItems="center"
         app:flexDirection="row"
@@ -93,23 +94,48 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/fbcConfig"
+    <FrameLayout
+        android:id="@+id/pnlConfig"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="50dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:clickable="false"
-        app:alignContent="flex_start"
-        app:alignItems="center"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="center">
+        android:background="@android:drawable/dialog_holo_light_frame">
+
+        <LinearLayout
+            android:id="@+id/pnlConfigFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_marginBottom="120dp"
+            android:background="#E91E63"
+            android:clickable="true"
+            android:gravity="bottom"
+            android:onClick="actionPnlFirst"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pnlConfigLocal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="60dp"
+            android:background="#4CAF50"
+            android:onClick="actionPnlSecond"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pnlConfigSession"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:background="#673AB7"
+            android:onClick="actionPnlThird"
+            android:orientation="vertical"></LinearLayout>
+    </FrameLayout>
 
 
-    </com.google.android.flexbox.FlexboxLayout>
 </FrameLayout>
 </layout>

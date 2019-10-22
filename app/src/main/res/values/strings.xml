@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Lemon</string>
     <string name="firststart_message">En caso de no tener tus datos pide acceso al administrador</string>
+    <string name="settings">AJUSTES</string>
 </resources>

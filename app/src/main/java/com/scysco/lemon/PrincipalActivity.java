@@ -2,8 +2,10 @@ package com.scysco.lemon;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -20,8 +22,9 @@ public class PrincipalActivity extends AppCompatActivity {
     private static final String TAG = "PrincipalActivity";
     public static String PLACE;
 
-    private int counter = 1;
-
+    private LinearLayout pnlConfigFavorites;
+    private LinearLayout pnlConfigLocal;
+    private LinearLayout pnlConfigSession;
         /*
         Product p = new Product("Duquesa",500,10,20);
         FirebaseFirestore DB = FirebaseFirestore.getInstance();
@@ -85,6 +88,17 @@ public class PrincipalActivity extends AppCompatActivity {
                 });
     }
 
+
+
+    private void addButton() {
+        FlexboxLayout fbContainer = findViewById(R.id.pnlFavorites);
+        ImageView btnUno = new ImageView(this);
+        btnUno.setImageResource(R.mipmap.ic_launcher);
+        btnUno.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        fbContainer.addView(btnUno);
+    }
         */
 
 
@@ -99,6 +113,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
         PrincipalActivity.PLACE = "Products_1";
 
+        pnlConfigFavorites = findViewById(R.id.pnlConfigFavorites);
+        pnlConfigLocal = findViewById(R.id.pnlConfigLocal);
+        pnlConfigSession = findViewById(R.id.pnlConfigSession);
 
     }
     @Override
@@ -107,14 +124,66 @@ public class PrincipalActivity extends AppCompatActivity {
         Toast.makeText(PrincipalActivity.this, "Correo: "+ FirebaseAuth.getInstance().getCurrentUser().getEmail(),
                 Toast.LENGTH_SHORT).show();
     }
-    private void addButton() {
-        FlexboxLayout fbContainer = findViewById(R.id.fbcFavorites);
-        ImageView btnUno = new ImageView(this);
-        btnUno.setImageResource(R.mipmap.ic_launcher);
-        btnUno.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        fbContainer.addView(btnUno);
+
+    public void panelConfig(View view) {
+        FrameLayout pnl = findViewById(R.id.pnlConfig);
+        if (pnl.getVisibility() == View.GONE)
+            pnl.setVisibility(View.VISIBLE);
+        else
+            pnl.setVisibility(View.GONE);
     }
 
+    public void actionPnlFirst(View view){
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) pnlConfigFavorites.getLayoutParams();
+        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        params.setMargins(0,0,0,120);
+        pnlConfigFavorites.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigLocal.getLayoutParams();
+        params.gravity = Gravity.BOTTOM;
+        params.height = 60;
+        params.setMargins(0,0,0,60);
+        pnlConfigLocal.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigSession.getLayoutParams();
+        params.height = 60;
+        params.setMargins(0,0,0,0);
+        pnlConfigSession.setLayoutParams(params);
+    }
+    public void actionPnlSecond(View view){
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) pnlConfigFavorites.getLayoutParams();
+        params.height = 60;
+        params.setMargins(0,0,0,0);
+        pnlConfigFavorites.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigLocal.getLayoutParams();
+        params.gravity = Gravity.BOTTOM;
+        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        params.setMargins(0,60,0,60);
+        pnlConfigLocal.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigSession.getLayoutParams();
+        params.height = 60;
+        params.setMargins(0,0,0,0);
+        pnlConfigSession.setLayoutParams(params);
+
+    }
+    public void actionPnlThird(View view){
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) pnlConfigFavorites.getLayoutParams();
+        params.height = 60;
+        params.setMargins(0,0,0,120);
+        pnlConfigFavorites.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigLocal.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        params.height = 60;
+        params.setMargins(0,60,0,0);
+        pnlConfigLocal.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) pnlConfigSession.getLayoutParams();
+        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        params.setMargins(0,120,0,0);
+        pnlConfigSession.setLayoutParams(params);
+
+    }
 }

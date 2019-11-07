@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<FrameLayout
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.scysco.lemon.viewmodel.PrincipalViewModel" />
+    </data>
+
+    <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/logos"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:gravity="center"
@@ -54,16 +62,15 @@
             app:srcCompat="@drawable/textsearch" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/btnHome"
             android:layout_width="141dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:clickable="true"
             android:foregroundGravity="center"
             android:minWidth="35dp"
             android:minHeight="35dp"
-            android:onClick="incrementSpace"
+            android:onClick="showPnl"
             app:srcCompat="@drawable/rect" />
 
         <ImageView
@@ -73,28 +80,88 @@
             android:layout_gravity="center"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="panelConfig"
+            android:onClick="showPnl"
             app:srcCompat="@drawable/textajustes" />
     </LinearLayout>
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/pnlFavorites"
+    <LinearLayout
+        android:id="@+id/pnlPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="45dp"
         android:layout_marginBottom="50dp"
-        android:clickable="false"
-        app:alignContent="flex_start"
-        app:alignItems="center"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="center">
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tvTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="actionTest"
+            android:text="@{String.valueOf(viewmodel.tvTest)}"
+            android:textSize="28sp" />
+    </LinearLayout>
 
-    </com.google.android.flexbox.FlexboxLayout>
+    <LinearLayout
+        android:id="@+id/pnlHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <FrameLayout
+        <LinearLayout
+            android:id="@+id/pnlHomeStore"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#E91E63"
+            android:onClick="actionHomeButtons"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pnlHomeTasks"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#FFC107"
+            android:onClick="actionHomeButtons"
+            android:orientation="vertical"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:id="@+id/pnlHomeMessages"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#3F51B5"
+            android:onClick="actionHomeButtons"
+            android:orientation="vertical"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/pnlConfig"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -102,39 +169,57 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="50dp"
-        android:background="@android:drawable/dialog_holo_light_frame">
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/pnlConfigFavorites"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="top"
-            android:layout_marginBottom="120dp"
+            android:layout_height='@{viewmodel.pnlConfigFavorites_Height+"px"}'
             android:background="#E91E63"
-            android:clickable="true"
-            android:gravity="bottom"
-            android:onClick="actionPnlFirst"
-            android:orientation="vertical"></LinearLayout>
+            android:onClick="actionConfigButtons"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/pnlConfigLocal"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="60dp"
-            android:background="#4CAF50"
-            android:onClick="actionPnlSecond"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_height='@{viewmodel.pnlConfigLocal_Height+"px"}'
+            android:background="#FFC107"
+            android:onClick="actionConfigButtons"
+            android:orientation="vertical"
+            android:padding="10dp" />
 
         <LinearLayout
             android:id="@+id/pnlConfigSession"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:background="#673AB7"
-            android:onClick="actionPnlThird"
-            android:orientation="vertical"></LinearLayout>
-    </FrameLayout>
+            android:layout_height='@{viewmodel.pnlConfigSession_Height+"px"}'
+            android:background="#3F51B5"
+            android:onClick="actionConfigButtons"
+            android:orientation="vertical"
+            android:padding="10dp" />
+    </LinearLayout>
 
 
 </FrameLayout>

@@ -1,9 +1,8 @@
-package com.scysco.lemon.viewmodel;
+package com.scysco.lemon;
 
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
-import com.scysco.lemon.PrincipalActivity;
 
 public class PrincipalViewModel extends ViewModel {
 

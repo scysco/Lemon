@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.scysco.lemon.databinding.ActivityPrincipalBinding;
-import com.scysco.lemon.viewmodel.PrincipalViewModel;
 
 public class PrincipalActivity extends AppCompatActivity {
 

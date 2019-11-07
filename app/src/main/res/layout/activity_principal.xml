@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.scysco.lemon.viewmodel.PrincipalViewModel" />
+            type="com.scysco.lemon.PrincipalViewModel" />
     </data>
 
     <FrameLayout
@@ -177,7 +177,7 @@
         <LinearLayout
             android:id="@+id/pnlConfigFavorites"
             android:layout_width="match_parent"
-            android:layout_height='@{viewmodel.pnlConfigFavorites_Height+"px"}'
+            android:layout_height='60dp'
             android:background="#E91E63"
             android:onClick="actionConfigButtons"
             android:orientation="vertical"
@@ -205,7 +205,7 @@
         <LinearLayout
             android:id="@+id/pnlConfigLocal"
             android:layout_width="match_parent"
-            android:layout_height='@{viewmodel.pnlConfigLocal_Height+"px"}'
+            android:layout_height='60dp'
             android:background="#FFC107"
             android:onClick="actionConfigButtons"
             android:orientation="vertical"
@@ -214,7 +214,7 @@
         <LinearLayout
             android:id="@+id/pnlConfigSession"
             android:layout_width="match_parent"
-            android:layout_height='@{viewmodel.pnlConfigSession_Height+"px"}'
+            android:layout_height='60dp'
             android:background="#3F51B5"
             android:onClick="actionConfigButtons"
             android:orientation="vertical"

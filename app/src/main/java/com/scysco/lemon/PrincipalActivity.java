@@ -44,6 +44,7 @@ public class PrincipalActivity extends AppCompatActivity {
         principalViewModel = ViewModelProviders.of(this).get(PrincipalViewModel.class);
 
         binding.setViewmodel(principalViewModel);
+        binding.setHandler(new PrincipalHandler(this));
         binding.setLifecycleOwner( this);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -54,10 +55,6 @@ public class PrincipalActivity extends AppCompatActivity {
         pnlConfig = findViewById(R.id.pnlConfig);
         pnlHome = findViewById(R.id.pnlHome);
 
-    }
-
-    public void actionTest(View view){
-        principalViewModel.tvTest.set(principalViewModel.tvTest.get()+1);
     }
 
     @Override

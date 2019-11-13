@@ -1,11 +1,9 @@
 package com.scysco.lemon;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.databinding.ObservableField;
 
@@ -22,11 +20,13 @@ public class PrincipalHandler {
         i.set(i.get()+1);
     }
 
-    public  void pnlButton(ObservableField<String> stat){
-        if (stat.get().equals("gone"))
-            stat.set("visible");
-        else
-            stat.set("gone");
+    public  void pnlButton(ObservableField<Boolean> stat,ObservableField<Boolean> stat2,ObservableField<Boolean> stat3){
+        if (stat.get())stat.set(false);
+        else{
+            stat.set(true);
+            stat2.set(false);
+            stat3.set(false);
+        }
     }
 
     public void animateListButton(View view,ObservableField<Integer> selected, ObservableField<Integer> other_1, ObservableField<Integer> other_2){

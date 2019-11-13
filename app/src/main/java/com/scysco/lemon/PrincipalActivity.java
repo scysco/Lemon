@@ -1,12 +1,8 @@
 package com.scysco.lemon;
 
-import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,14 +23,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
     public static float density;
 
-    TextView test;
-
-    private LinearLayout pnlConfig;
-    private LinearLayout pnlHome;
-
-    private int homeSelected = 0;
-    private int configSelected = 0;
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +40,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
         PrincipalActivity.PLACE = "Products_1";
 
-        pnlConfig = findViewById(R.id.pnlConfig);
-        pnlHome = findViewById(R.id.pnlHome);
-
     }
 
     @Override
@@ -62,56 +47,6 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onStart();
         Toast.makeText(PrincipalActivity.this, "Correo: " + FirebaseAuth.getInstance().getCurrentUser().getEmail(),
                 Toast.LENGTH_SHORT).show();
-    }
-
-
-    public void actionHomeButtons(View view){
-        preAnimateButton(view,homeSelected,pnlHome.getHeight());
-        Log.d(TAG, "actionHomeButtons: "+homeSelected);
-    }
-
-    public void actionConfigButtons(View view){
-        preAnimateButton(view,configSelected,pnlConfig.getHeight());
-    }
-
-    public void preAnimateButton(View view,int selected, int parentHeight){
-        if (selected != view.getId()) {
-            float h =  parentHeight - (136 * getResources().getDisplayMetrics().density);
-            animateButton(view, (int) h);
-            if (selected != 0) {
-                float he = 60 * getResources().getDisplayMetrics().density;
-                animateButton(findViewById(selected), (int) he);
-            }
-            if (selected == homeSelected)homeSelected = view.getId();
-            if (selected == configSelected)configSelected = view.getId();
-        }
-    }
-
-    public void animateButton(View view, int height){
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-        ValueAnimator animator = ValueAnimator.ofInt(params.height, height);
-        animator.addUpdateListener(animation ->{
-                params.height = (Integer) animation.getAnimatedValue();
-                view.setLayoutParams(params);
-        });
-        animator.setDuration(300);
-        animator.start();
-    }
-
-    public void showPnl(View view) {
-        if (view.getId() == R.id.btnConfig)
-        if (pnlConfig.getVisibility() == View.GONE){
-                pnlConfig.setVisibility(View.VISIBLE);
-                pnlHome.setVisibility(View.GONE);
-            }
-            else pnlConfig.setVisibility(View.GONE);
-
-        if (view.getId() == R.id.btnHome)
-            if (pnlHome.getVisibility() == View.GONE){
-                pnlConfig.setVisibility(View.GONE);
-                pnlHome.setVisibility(View.VISIBLE);
-            }
-            else pnlHome.setVisibility(View.GONE);
     }
 
 

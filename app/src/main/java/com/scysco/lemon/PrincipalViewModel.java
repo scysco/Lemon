@@ -17,8 +17,9 @@ public class PrincipalViewModel extends ViewModel {
     public ObservableField<Integer> pnlConfigFavorites_Height = new ObservableField<>();
     public ObservableField<Integer> pnlConfigLocal_Height = new ObservableField<>();
     public ObservableField<Integer> pnlConfigSession_Height = new ObservableField<>();
-    public ObservableField<String> pnlConfigStatus = new ObservableField<>();
-    public ObservableField<String> pnlHomeStatus = new ObservableField<>();
+    public ObservableField<Boolean> pnlConfigStatus = new ObservableField<>();
+    public ObservableField<Boolean> pnlHomeStatus = new ObservableField<>();
+    public ObservableField<Boolean> pnlSearchStatus = new ObservableField<>();
 
 
 
@@ -31,8 +32,9 @@ public class PrincipalViewModel extends ViewModel {
         pnlConfigFavorites_Height.set(def_height);
         pnlConfigLocal_Height.set(def_height);
         pnlConfigSession_Height.set(def_height);
-        pnlConfigStatus.set("gone");
-        pnlHomeStatus.set("gone");
+        pnlConfigStatus.set(false);
+        pnlHomeStatus.set(false);
+        pnlSearchStatus.set(false);
     }
 
     @BindingAdapter({"android:layout_height"})
@@ -40,5 +42,9 @@ public class PrincipalViewModel extends ViewModel {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
         layoutParams.height = (int) height;
         view.setLayoutParams(layoutParams);
+    }
+    @BindingAdapter("android:visibility")
+    public static void setVisibility(View view, Boolean value) {
+        view.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 }

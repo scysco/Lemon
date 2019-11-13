@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable name="viewmodel" type="com.scysco.lemon.PrincipalViewModel"/>
         <variable name="handler" type="com.scysco.lemon.PrincipalHandler" />
     </data>
@@ -60,6 +61,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
+                android:onClick="@{() -> handler.pnlButton(viewmodel.pnlSearchStatus,viewmodel.pnlHomeStatus,viewmodel.pnlConfigStatus)}"
                 app:srcCompat="@drawable/textsearch" />
 
             <ImageView
@@ -71,7 +73,7 @@
                 android:foregroundGravity="center"
                 android:minWidth="35dp"
                 android:minHeight="35dp"
-                android:onClick="showPnl"
+                android:onClick="@{() -> handler.pnlButton(viewmodel.pnlHomeStatus,viewmodel.pnlSearchStatus,viewmodel.pnlConfigStatus)}"
                 app:srcCompat="@drawable/rect" />
 
             <ImageView
@@ -81,7 +83,7 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:onClick="showPnl"
+                android:onClick="@{() -> handler.pnlButton(viewmodel.pnlConfigStatus,viewmodel.pnlHomeStatus,viewmodel.pnlSearchStatus)}"
                 app:srcCompat="@drawable/textajustes" />
         </LinearLayout>
 
@@ -101,6 +103,7 @@
                 android:onClick="@{() -> handler.actionTest(viewmodel.tvTest)}"
                 android:text="@{String.valueOf(viewmodel.tvTest),default=0}"
                 android:textSize="28sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -115,7 +118,7 @@
             android:elevation="10dp"
             android:gravity="bottom"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="@{viewmodel.pnlHomeStatus,default=gone}">
 
             <LinearLayout
                 android:id="@+id/pnlHomeStore"
@@ -214,7 +217,7 @@
             android:elevation="10dp"
             android:gravity="bottom"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="@{viewmodel.pnlConfigStatus,default=gone}">
 
             <LinearLayout
                 android:id="@+id/pnlConfigFavorites"
@@ -299,6 +302,46 @@
                         android:textSize="28sp" />
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pnlSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="60dp"
+            android:background="#F7F6F4"
+            android:elevation="10dp"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:visibility="@{viewmodel.pnlSearchStatus,default=visible}">
+
+            <LinearLayout
+                android:id="@+id/pnlSearchSearch"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_search_icon"
+                    android:ems="10"
+                    android:hint="@android:string/search_go"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_list"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+
         </LinearLayout>
 
 

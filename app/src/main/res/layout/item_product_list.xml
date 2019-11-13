@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="product" type="com.scysco.lemon.PrincipalHandler" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:padding="3dp"
+            app:srcCompat="@drawable/spinner" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:fontFamily="@font/montserrat"
+            android:text="Product Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#556080"
+            android:textSize="30sp"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/measure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="12"
+            android:fontFamily="@font/montserrat"
+            android:text="1KG"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#556080"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="18"
+            android:fontFamily="@font/montserrat"
+            android:maxWidth="60dp"
+            android:text="$00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#556080"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</layout>

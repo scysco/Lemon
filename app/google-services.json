@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "678974971946-0733srakbrprrpd6rsq8tk0v3i18grk9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scysco.lemon",
+            "certificate_hash": "cb1b323cd57ac310a0d8a96f68f8b86acd6cd1d5"
+          }
+        },
+        {
           "client_id": "678974971946-gmuh32obbqhgv852npug9sf04a7p2kkr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

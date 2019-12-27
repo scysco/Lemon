@@ -17,7 +17,7 @@
             android:layout_height="87dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:src="@drawable/spinner" />
+            android:src="@drawable/ic_spinner" />
 
         <ImageView
             android:id="@+id/laviga"
@@ -25,7 +25,7 @@
             android:layout_height="32dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:src="@drawable/laviganh" />
+            android:src="@drawable/ic_laviga_logo" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,10 +37,10 @@
         <ImageView
             android:id="@+id/lemonlogo"
             android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_height="120dp"
             android:layout_marginTop="55dp"
             android:layout_weight="1"
-            android:src="@drawable/lemon_logo"/>
+            android:src="@drawable/ic_lemon_logo"/>
 
     </LinearLayout>
 

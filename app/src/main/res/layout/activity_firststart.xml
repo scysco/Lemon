@@ -1,117 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F6F4">
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="15dp"
-        app:srcCompat="@drawable/laviganh" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="65dp"
-        android:fontFamily="@font/roboto_light"
-        android:text="@string/firststart_message"
-        android:textAlignment="center"
-        android:textSize="26sp" />
+    android:background="#F7F6F4"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="60dp"
-        android:clickable="true"
-        android:onClick="skip"
-        app:srcCompat="@drawable/lemon_logo" />
+        android:layout_gravity="center"
+        android:layout_weight="50"
+        android:clickable="false"
+        app:srcCompat="@drawable/ic_lemon_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="140dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="30"
         android:orientation="vertical">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Usuario"
+            android:inputType="textPersonName"
+            android:textColor="#153027"
+            android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/user" />
-
-            <EditText
-                android:id="@+id/etUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="30dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:fontFamily="@font/roboto"
-                android:hint="Usuario"
-                android:inputType="textPersonName"
-                android:textColor="#153027"
-                android:textSize="24sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="50dp"
+            android:drawableStart="@drawable/ic_padlock"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="#153027"
+            android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/password" />
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="30dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:fontFamily="@font/roboto"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:textColor="#153027"
-                android:textSize="24sp" />
-
-        </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/btnAcceder"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="45dp"
             android:clickable="true"
             android:onClick="signIn"
-            app:srcCompat="@drawable/btnacceder" />
+            app:srcCompat="@drawable/ic_btn_acceder" />
 
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="20"
+        android:gravity="bottom|center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/firststart_message"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_laviga_logo" />
+    </LinearLayout>
+
+</LinearLayout>

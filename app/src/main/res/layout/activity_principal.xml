@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/lemon_logo" />
+                app:srcCompat="@drawable/ic_lemon_logo" />
 
             <Space
                 android:layout_width="match_parent"
@@ -41,14 +41,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/laviganh" />
+                app:srcCompat="@drawable/ic_laviga_logo" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/botonera"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_gravity="bottom|center_horizontal"
             android:background="#3B514A"
             android:gravity="bottom|center_vertical"
@@ -57,34 +57,34 @@
             <ImageView
                 android:id="@+id/btnSearch"
                 android:layout_width="85dp"
-                android:layout_height="30dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:onClick="@{() -> handler.pnlButton(viewmodel.pnlSearchStatus,viewmodel.pnlHomeStatus,viewmodel.pnlConfigStatus)}"
-                app:srcCompat="@drawable/textsearch" />
+                app:srcCompat="@drawable/ic_btn_buscar" />
 
             <ImageView
                 android:id="@+id/btnHome"
                 android:layout_width="141dp"
-                android:layout_height="35dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:foregroundGravity="center"
                 android:minWidth="35dp"
                 android:minHeight="35dp"
                 android:onClick="@{() -> handler.pnlButton(viewmodel.pnlHomeStatus,viewmodel.pnlSearchStatus,viewmodel.pnlConfigStatus)}"
-                app:srcCompat="@drawable/rect" />
+                app:srcCompat="@drawable/ic_btn_home" />
 
             <ImageView
                 android:id="@+id/btnConfig"
                 android:layout_width="85dp"
-                android:layout_height="30dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:onClick="@{() -> handler.pnlButton(viewmodel.pnlConfigStatus,viewmodel.pnlHomeStatus,viewmodel.pnlSearchStatus)}"
-                app:srcCompat="@drawable/textajustes" />
+                app:srcCompat="@drawable/ic_btn_ajustes" />
         </LinearLayout>
 
         <LinearLayout
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> handler.actionTest(viewmodel.tvTest)}"
-                android:text="@{String.valueOf(viewmodel.tvTest),default=0}"
+                android:text="@{'$'+String.valueOf(viewmodel.tvTest),default=0}"
                 android:textSize="28sp" />
 
         </LinearLayout>
@@ -335,6 +335,14 @@
                     android:ems="10"
                     android:hint="@android:string/search_go"
                     android:inputType="textPersonName" />
+
+                <Button
+                    android:id="@+id/btnTest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="test"
+                    android:onClick="@{() -> handler.testProduct()}" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

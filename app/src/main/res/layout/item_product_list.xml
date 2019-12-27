@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="product" type="com.scysco.lemon.PrincipalHandler" />
+        <variable name="product" type="com.scysco.lemon.api.Product" />
     </data>
 
     <LinearLayout
@@ -14,10 +14,11 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="20"
             android:padding="3dp"
-            app:srcCompat="@drawable/spinner" />
+            app:error="@{@drawable/ic_spinner}"
+            app:imageUrl="@{product.id}" />
 
         <TextView
             android:id="@+id/name"
@@ -25,10 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:fontFamily="@font/montserrat"
-            android:text="Product Name"
+            android:text="@{product.name,default=Producto}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#556080"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:typeface="normal" />
 
         <TextView
@@ -37,10 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="12"
             android:fontFamily="@font/montserrat"
-            android:text="1KG"
+            android:text="@{product.stock}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#556080"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/price"
@@ -49,10 +50,10 @@
             android:layout_weight="18"
             android:fontFamily="@font/montserrat"
             android:maxWidth="60dp"
-            android:text="$00"
+            android:text="@{'$'+String.valueOf(product.price),default=$00}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#556080"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 </layout>

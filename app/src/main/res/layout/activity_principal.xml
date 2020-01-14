@@ -316,7 +316,7 @@
             android:elevation="10dp"
             android:gravity="top"
             android:orientation="vertical"
-            android:visibility="@{viewmodel.pnlSearchStatus,default=visible}">
+            android:visibility="@{viewmodel.pnlSearchStatus,default=gone}">
 
             <LinearLayout
                 android:id="@+id/pnlSearchSearch"

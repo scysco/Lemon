@@ -4,14 +4,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.databinding.ObservableField;
-
-import com.scysco.lemon.api.Product;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PrincipalHandler {
     Context context;
@@ -62,12 +56,6 @@ public class PrincipalHandler {
         animator.start();
     }
     public void testProduct(){
-        Toast.makeText(context, "testProduct", Toast.LENGTH_SHORT).show();
-
-        PrincipalActivity.products.add(new Product("cane","caña",20.0,15.0,"12KG"));
-
-        Toast.makeText(context, PrincipalActivity.products.get(1).name.get(), Toast.LENGTH_SHORT).show();
-
-
+        PrincipalActivity.addProduct();
     }
 }

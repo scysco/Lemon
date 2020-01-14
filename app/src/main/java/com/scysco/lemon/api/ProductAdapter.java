@@ -1,5 +1,6 @@
 package com.scysco.lemon.api;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.scysco.lemon.R;
 import com.scysco.lemon.databinding.ItemProductListBinding;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
 
-    List<Product> products;
+    List<Product> products = Collections.emptyList();
+    Context context;
 
-    public ProductAdapter(List<Product> products) {
+    public ProductAdapter(List<Product> products, Context context) {
+        this.context = context;
         this.products = products;
     }
 
@@ -36,6 +40,26 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     @Override
     public int getItemCount() {
         return products.size();
+    }
+
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
+
+    // Insert a new item to the RecyclerView on a predefined position
+    public void insert(int position, Product product) {
+        products.add(position, product);
+        notifyItemInserted(position);
+    }
+
+    // Remove a RecyclerView item containing a specified Data object
+    public void remove(Product product) {
+        int position = products.indexOf(product);
+        products.remove(position);
+        notifyItemRemoved(position);
     }
 
     public class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

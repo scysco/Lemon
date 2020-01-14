@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -15,13 +14,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.scysco.lemon.api.Product;
@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -55,6 +54,7 @@ public class PrincipalActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     public static List<Product> products;
+    public static ProductAdapter productAdapter;
     public static float density;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -62,10 +62,11 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_principal);
-        density = getResources().getDisplayMetrics().density;
-        principalViewModel = ViewModelProviders.of(this).get(PrincipalViewModel.class);
-        RES_PATCH = getFilesDir().getPath();
 
+        RES_PATCH = getFilesDir().getPath();
+        density = getResources().getDisplayMetrics().density;
+
+        principalViewModel = ViewModelProviders.of(this).get(PrincipalViewModel.class);
         binding.setViewmodel(principalViewModel);
         binding.setHandler(new PrincipalHandler(this));
         binding.setLifecycleOwner( this);
@@ -75,14 +76,23 @@ public class PrincipalActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = binding.searchList;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        products = new ArrayList<>();
-        recyclerView.setAdapter(new ProductAdapter(products));
+
+        products = principalViewModel.products.get();
+        productAdapter = new ProductAdapter(products, this);
+        recyclerView.setAdapter(productAdapter);
 
         mAuth = FirebaseAuth.getInstance();
         versions();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         getProducts();
+    }
 
+    public static void addProduct(){
+        productAdapter.insert(productAdapter.getItemCount(),new Product("cane","caña",20.0,15.0,"12KG"));
     }
 
     private void getProducts() {
@@ -90,25 +100,26 @@ public class PrincipalActivity extends AppCompatActivity {
         db.collection("lemon_products").get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot pl : task.getResult()) {
-                            db.collection("lemon_shops").document(InitActivity.SHOP).collection("products").document(pl.getId()).get()
-                                    .addOnCompleteListener(task2 -> {
-                                        if (task2.isSuccessful()) {
-                                            DocumentSnapshot ps = task2.getResult();
-                                            if (ps.exists()) {
-                                                products.add(new Product(pl.getId(),
-                                                        pl.getString("name"),
-                                                        pl.getDouble("price"),
-                                                        pl.getDouble("cost"),
-                                                        ps.getString("stock")));
-                                            } else {
-                                                Log.e(TAG, "No such document");
-                                            }
-                                        } else {
-                                            Log.e(TAG, "get failed with ", task2.getException());
-                                        }
-                                    });
-                            Log.d(TAG, pl.getId() + " => " + pl.getData());
+                        for (QueryDocumentSnapshot docProd : task.getResult()) {
+                            Product prod = new Product();
+                            final DocumentReference docRefProduct = db.collection("lemon_products").document(docProd.getId());
+                            docRefProduct.addSnapshotListener((docProdSNP, e) -> {
+                                if (e != null) {Log.w(TAG, "Listen failed.", e);return;}
+                                if (docProdSNP != null && docProdSNP.exists()) {
+                                    prod.id.set(docProdSNP.getId());
+                                    prod.name.set(docProdSNP.getString("name"));
+                                    prod.price.set(docProdSNP.getDouble("price"));
+                                    prod.cost.set(docProdSNP.getDouble("cost"));
+                                } else {Log.d(TAG, "Current data: null");}
+                            });
+                            final DocumentReference docRefStock = db.collection("lemon_shops").document(InitActivity.SHOP).collection("products").document(docProd.getId());
+                            docRefStock.addSnapshotListener((docStockSNP, e) -> {
+                                if (e != null) {Log.w(TAG, "Listen failed.", e);return;}
+                                if (docStockSNP != null && docStockSNP.exists()) {
+                                    prod.stock.set(docStockSNP.getString("stock"));
+                                } else {Log.d(TAG, "Current data: null");}
+                            });
+                            productAdapter.insert(productAdapter.getItemCount(),prod);
                         }
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
@@ -132,8 +143,6 @@ public class PrincipalActivity extends AppCompatActivity {
             inputLine = inBuff.readLine();
             inBuff.close();
             PrincipalActivity.VERSION_ICONS = inputLine;
-
-            Log.e("File Reading stuff", "success = "+inputLine);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("lemon").document("info").get()
@@ -204,7 +213,7 @@ public class PrincipalActivity extends AppCompatActivity {
                                     osw.write(PrincipalActivity.VERSION_ICONS);
                                     osw.flush();
                                     osw.close();
-
+                                    updateResources();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -215,7 +224,7 @@ public class PrincipalActivity extends AppCompatActivity {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
                     });
-            updateResources();
+
         }
     }
 
@@ -224,17 +233,17 @@ public class PrincipalActivity extends AppCompatActivity {
         StorageReference storageRef = storage.getReference();
         StorageReference zipref = storageRef.child("prodicns.zip");
 
+        String a = getFilesDir().getPath()+"/prodicns.zip";
         File localFile = new File(getFilesDir(),"prodicns.zip");
 
-        String a = getFilesDir().getPath()+"/prodicns.zip";
-
         zipref.getFile(localFile)
-                .addOnSuccessListener(taskSnapshot -> Toast.makeText(PrincipalActivity.this, "file created: "+ a, Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(taskSnapshot -> {Toast.makeText(PrincipalActivity.this, "file created: "+ a, Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Onsucess: "+a);
+                    if (unpackZip(getFilesDir().getPath()+"/","prodicns.zip"))
+                        Log.e(TAG, "onCreate: se creo!");
+                    else
+                        Log.e(TAG, "onCreate: no se creo!!");})
                 .addOnFailureListener(exception -> Toast.makeText(PrincipalActivity.this, "An error accoured", Toast.LENGTH_SHORT).show());
-        if (unpackZip(getFilesDir().getPath()+"/","prodicns.zip"))
-            Log.e(TAG, "onCreate: se creo!");
-        else
-            Log.e(TAG, "onCreate: no se creo!!");
     }
 
     @Override
@@ -282,6 +291,7 @@ public class PrincipalActivity extends AppCompatActivity {
         catch(IOException e)
         {
             e.printStackTrace();
+            Log.e(TAG, "no se creo documento");
             return false;
         }
 

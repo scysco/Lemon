@@ -7,6 +7,10 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
+import com.scysco.lemon.api.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrincipalViewModel extends ViewModel {
 
@@ -20,6 +24,7 @@ public class PrincipalViewModel extends ViewModel {
     public ObservableField<Boolean> pnlConfigStatus = new ObservableField<>();
     public ObservableField<Boolean> pnlHomeStatus = new ObservableField<>();
     public ObservableField<Boolean> pnlSearchStatus = new ObservableField<>();
+    public ObservableField<List<Product>> products = new ObservableField<>();
 
 
 
@@ -35,6 +40,7 @@ public class PrincipalViewModel extends ViewModel {
         pnlConfigStatus.set(false);
         pnlHomeStatus.set(false);
         pnlSearchStatus.set(false);
+        products.set(new ArrayList<>());
     }
 
     @BindingAdapter({"android:layout_height"})

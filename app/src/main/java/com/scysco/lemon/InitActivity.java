@@ -24,6 +24,7 @@ import java.io.OutputStreamWriter;
 
 public class InitActivity extends AppCompatActivity {
 
+    private static final String TAG = "InitActivity";
     public static String SHOP;
     private int threadDuration;
 
@@ -47,7 +48,7 @@ public class InitActivity extends AppCompatActivity {
                 threadDuration = 0;
             else
                 threadDuration = 2500;
-            Log.e("File Reading stuff", "success = "+inputLine);
+            Log.i(TAG, "File Reading success = "+inputLine);
         } catch (IOException ioe){
             try {
                 FileOutputStream fOut = openFileOutput("SHOP.INFO",MODE_PRIVATE);
